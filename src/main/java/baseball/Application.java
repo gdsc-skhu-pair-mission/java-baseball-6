@@ -1,7 +1,15 @@
 package baseball;
 
+import baseball.controller.NumberBaseballGameController;
+import baseball.model.Computer;
+import baseball.model.User;
+import baseball.view.GameView;
+
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        NumberBaseballGameController numberBaseballGameController = new NumberBaseballGameController();
+        numberBaseballGameController.numberBaseballGame();
     }
+
 }
