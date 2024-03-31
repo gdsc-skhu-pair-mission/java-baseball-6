@@ -1,18 +1,20 @@
 package baseball.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Number {
 
-    private final String number;
+    private final List<Integer> number;
 
     public Number(String inputNumber) {
         validation(inputNumber);
-        this.number = inputNumber;
+        this.number = stringToList(inputNumber);
     }
 
-    public String getNumber() {
+    public List<Integer> getNumber() {
         return number;
     }
 
@@ -52,4 +54,13 @@ public class Number {
         return set.size() == 3;
     }
 
+    private List<Integer> stringToList(String inputNumber) {
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < inputNumber.length(); i++) {
+            list.add((int) inputNumber.charAt(i));
+        }
+
+        return list;
+    }
 }

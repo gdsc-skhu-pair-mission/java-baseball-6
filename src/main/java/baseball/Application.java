@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.model.Computer;
 import baseball.model.Number;
 import baseball.view.InputView;
 
@@ -9,5 +10,6 @@ public class Application {
         InputView inputView = new InputView();
         inputView.printGameStart();
         Number number = inputView.getInputNumber();
+        Computer computer = new Computer();
     }
 }

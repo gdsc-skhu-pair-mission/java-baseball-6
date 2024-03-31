@@ -16,4 +16,5 @@ public class InputView {
         return new Number(input);
     }
 
+
 }
