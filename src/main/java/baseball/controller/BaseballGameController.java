@@ -24,8 +24,6 @@ public class BaseballGameController {
     }
 
     public void start() {
-        System.out.println(computer.getNumber().toString());
-
         inputView.printGameStart();
 
         while (true) {
@@ -35,8 +33,11 @@ public class BaseballGameController {
 
             outputView.printResultMessage(result.strike(), result.ball());
 
-            // TODO: 재시작 로직 구현
             if (result.strike() == 3) {
+                if (inputView.isRestart()) {
+                    computer.generateRandomNumber();
+                    continue;
+                }
                 break;
             }
         }
