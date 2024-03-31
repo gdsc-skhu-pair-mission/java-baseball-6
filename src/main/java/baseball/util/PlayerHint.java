@@ -7,27 +7,31 @@ public class PlayerHint {
     private static final String BALL = "볼";
     private static final String STRIKE = "스트라이크";
     private static final String NOTTING = "낫싱";
+    private static final int BALL_INDEX = 0;
+    private static final int STRIKE_INDEX = 1;
 
     private static String playerHint;
 
-    public String offerResultHint(List<Integer> ballAndStrikeCount) {
-        int ballCount = ballAndStrikeCount.get(0);
-        int strikeCount = ballAndStrikeCount.get(1);
+    public void offerResultHint(List<Integer> ballAndStrikeCount) {
+        int ballCount = ballAndStrikeCount.get(BALL_INDEX);
+        int strikeCount = ballAndStrikeCount.get(STRIKE_INDEX);
 
         if (ballCount == 0 && strikeCount == 0) {
-            return NOTTING;
+            this.playerHint = NOTTING;
+            return;
         }
 
         if (ballCount == 0 && strikeCount != 0) {
-            return strikeCount + STRIKE;
+            this.playerHint = strikeCount + STRIKE;
+            return;
         }
 
         if (ballCount != 0 && strikeCount == 0) {
-            return ballCount + BALL;
+            this.playerHint = ballCount + BALL;
+            return;
         }
 
         this.playerHint = ballCount + BALL + " " + strikeCount + STRIKE;
-        return ballCount + BALL + " " + strikeCount + STRIKE;
     }
 
     public static String getPlayerHint() {

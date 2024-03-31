@@ -58,7 +58,7 @@ public class GamePlayController {
             return;
         }
 
-        outputView.printNoneStrikeResult(playerHint.offerResultHint(ballAndStrikeCountList));
+        outputView.printNoneStrikeResult(playerHint.getPlayerHint());
     }
 
     private void allStrikeGameExit() {
@@ -66,5 +66,4 @@ public class GamePlayController {
             gameRetryService.processNextGameStatus(computer, player);
         }
     }
-
 }
