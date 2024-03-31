@@ -23,7 +23,6 @@ public class NumberBaseballGameController {
                 computerNumbers.add(randomNumber);
             }
         }
-        System.out.println(computerNumbers);
         computer.setComputerNumbers(computerNumbers);
     }
 
