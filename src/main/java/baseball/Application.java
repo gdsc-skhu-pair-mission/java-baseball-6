@@ -1,15 +1,10 @@
 package baseball;
 
-import baseball.model.Computer;
-import baseball.model.Number;
-import baseball.view.InputView;
+import baseball.controller.BaseballGameController;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        InputView inputView = new InputView();
-        inputView.printGameStart();
-        Number number = inputView.getInputNumber();
-        Computer computer = new Computer();
+        BaseballGameController baseballGameController = new BaseballGameController();
+        baseballGameController.start();
     }
 }
