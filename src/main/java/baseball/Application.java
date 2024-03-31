@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.model.Number;
 import baseball.view.InputView;
 
 public class Application {
@@ -7,5 +8,6 @@ public class Application {
         // TODO: 프로그램 구현
         InputView inputView = new InputView();
         inputView.printGameStart();
+        Number number = inputView.getInputNumber();
     }
 }
