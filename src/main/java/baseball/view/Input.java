@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
     public String getInputNumber() {
-        return Console.readLine();
+        String input = Console.readLine();
+        return new Number(input);
     }
 }

@@ -20,7 +20,7 @@ public class Output{
         System.out.println(RESTART_OR_END);
     }
 
-    public static void result(Result result) {
+    public static void resultMassage(Result result) {
         int ballCount = result.getBallCount();
         int strikeCount = result.getStrikeCount();
 
