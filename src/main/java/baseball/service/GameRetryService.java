@@ -3,7 +3,10 @@ package baseball.service;
 import baseball.domain.Computer;
 import baseball.domain.Player;
 import baseball.domain.PlayerStatus;
+import baseball.util.ComputerRandomNumber;
 import baseball.view.InputView;
+
+import java.io.IOException;
 
 public class GameRetryService {
 
@@ -12,7 +15,7 @@ public class GameRetryService {
     private final InputView inputView = new InputView();
 
     public void processNextGameStatus(Computer computer, Player player) {
-        player.setRetryNumber(inputView.setRetryNumber());
+        player.setRetryNumber(inputView.settingRetryNumber());
         setNextGameStatus(computer, player);
     }
 

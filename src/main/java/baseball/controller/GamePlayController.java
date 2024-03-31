@@ -62,7 +62,7 @@ public class GamePlayController {
     }
 
     private void allStrikeGameExit() {
-        if (PlayerHint.getPlayerHint().equals(ALL_STRIKE + STRIKE)) {
+        if (PlayerHint.getPlayerHint().equals(ALL_STRIKE + STRIKE_PRINT)) {
             gameRetryService.processNextGameStatus(computer, player);
         }
     }
