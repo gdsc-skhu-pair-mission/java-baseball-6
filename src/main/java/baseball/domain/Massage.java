@@ -18,7 +18,7 @@ public final class Massage {
 
     public static final String SUCCESS = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
 
-    public static final String RESERT_OR_END = "게임을 새로 시작하려면 " + RESTART +
+    public static final String RESTART_OR_END = "게임을 새로 시작하려면 " + RESTART +
             ", 종료하려면 " + END + "를 입력하세요.";
 
 }
