@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static java.lang.Character.getNumericValue;
+
 public class Number {
 
     private final List<Integer> number;
@@ -58,7 +60,7 @@ public class Number {
         List<Integer> list = new ArrayList<>();
 
         for (int i = 0; i < inputNumber.length(); i++) {
-            list.add((int) inputNumber.charAt(i));
+            list.add(getNumericValue(inputNumber.charAt(i)));
         }
 
         return list;
