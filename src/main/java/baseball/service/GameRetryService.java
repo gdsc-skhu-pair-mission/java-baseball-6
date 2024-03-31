@@ -3,7 +3,6 @@ package baseball.service;
 import baseball.domain.Computer;
 import baseball.domain.Player;
 import baseball.domain.PlayerStatus;
-import baseball.util.ComputerRandomNumber;
 import baseball.view.InputView;
 
 public class GameRetryService {
