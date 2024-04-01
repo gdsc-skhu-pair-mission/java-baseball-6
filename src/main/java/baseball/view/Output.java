@@ -27,9 +27,11 @@ public class Output{
         ArrayList<String> gameResult = new ArrayList<>();
         if (ballCount != 0) {
             gameResult.add(String.format(BALL, ballCount));
-        } else if (strikeCount != 0) {
+        }
+        if (strikeCount != 0) {
             gameResult.add(String.format(STRIKE, strikeCount));
-        } else if (ballCount == 0 && strikeCount == 0) {
+        }
+        if (ballCount == 0 && strikeCount == 0) {
             gameResult.add(String.format(NOTHING));
         }
         System.out.println(String.join(" ",gameResult));

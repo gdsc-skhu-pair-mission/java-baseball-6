@@ -29,19 +29,18 @@ public class Numbers {
         return transformNumbers;
     }
 
-    private boolean iscontainNumber(int number, int position) {
-        return numbers.contains(number) && position != numbers.indexOf(number);
+    private boolean isContainNumber(int number, int position) {
+        return position != numbers.indexOf(number) && numbers.contains(number);
     }
 
     private boolean isSamePosition(int number, int position) {
         return position == numbers.indexOf(number);
-
     }
 
     private int countBall(Numbers inputNumbers) {
         int ball = 0;
         for(int i = 0; i < numbers.size(); i++) {
-            if(inputNumbers.iscontainNumber(numbers.get(i),i)) {
+            if(inputNumbers.isContainNumber(numbers.get(i),i)) {
                 ball++;
             }
         }
@@ -61,6 +60,7 @@ public class Numbers {
     public Result compareToNumbers(Numbers inputNumbers) {
         return new Result(countBall(inputNumbers), countStrike(inputNumbers));
     }
+
     @Override
     public String toString() {
         return "Numbers{" +
