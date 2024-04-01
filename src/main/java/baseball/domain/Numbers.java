@@ -5,8 +5,9 @@ import java.util.List;
 
 import static baseball.validator.validator.*;
 
+
 public class Numbers {
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Numbers() {
         GenerateRandomNumber generateRandomNumbers = new GenerateRandomNumber();
@@ -29,8 +30,13 @@ public class Numbers {
         return transformNumbers;
     }
 
+<<<<<<< HEAD
     private boolean isContainNumber(int number, int position) {
         return position != numbers.indexOf(number) && numbers.contains(number);
+=======
+    private boolean iscontainNumber(int number, int position) {
+        return position != numbers.indexOf(number) && numbers.contains(number) ;
+>>>>>>> 58c16cfaf53fe709d8d69771a43d71aa76b1fe73
     }
 
     private boolean isSamePosition(int number, int position) {

@@ -7,9 +7,6 @@ import java.util.Set;
 import static baseball.domain.Massage.*;
 
 public class validator {
-    private final static String LENGTH_ERROR_MESSAGE = "3자리 수를 입력해야 합니다.";
-    private static final String RANGE_ERROR_MESSAGE = "1과 9 사이의 숫자를 입력해야 합니다.";
-    private final static String DUPLICATE_ERROR_MESSAGE = "중복되지 않은 숫자를 입력해야 합니다.";
 
     public static void validateLength(String input) {
         if (input.length() != INPUT_LENGTH) {

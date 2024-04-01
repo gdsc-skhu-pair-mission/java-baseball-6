@@ -27,4 +27,8 @@ public final class Massage {
     public final static String RESTART_OR_END = "게임을 새로 시작하려면 " + RESTART +
             ", 종료하려면 " + END + "를 입력하세요.";
 
+    public final static String LENGTH_ERROR_MESSAGE = "3자리 수를 입력해야 합니다.";
+    public final static String RANGE_ERROR_MESSAGE = "1과 9 사이의 숫자를 입력해야 합니다.";
+    public final static String DUPLICATE_ERROR_MESSAGE = "중복되지 않은 숫자를 입력해야 합니다.";
+
 }
