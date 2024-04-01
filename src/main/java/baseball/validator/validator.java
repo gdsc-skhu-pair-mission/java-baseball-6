@@ -16,19 +16,19 @@ public class validator {
 
     public static void validateRange(String input) {
         for (char num : input.toCharArray()) {
-            int number = Character.getNumericValue(num);
-            if (number< MIN || number > MAX) {
-                throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
+            String[] numbers = input.split("");
+            for (String number : numbers) {
+                if (Integer.parseInt(number) < MIN || Integer.parseInt(number) > MAX) {
+                    throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
+                }
             }
         }
     }
-    public static void validateDuplicate (String input){
-        Set<Character> numberSet = new HashSet<>();
-        for (char number : input.toCharArray()) {
-            if (!numberSet.add(number)) {
-                throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
-            }
-        }
 
+    public static void validateDuplicate(String input){
+        String[] numbers = input.split("");
+        if (numbers.length != Arrays.stream(numbers).distinct().count()) {
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
+        }
     }
 }
