@@ -17,6 +17,8 @@ public class Output{
 
     public static void successMassage() {
         System.out.println(SUCCESS);
+    }
+    public static void resultOrEndMessage() {
         System.out.println(RESTART_OR_END);
     }
 
@@ -24,15 +26,15 @@ public class Output{
         int ballCount = result.getBallCount();
         int strikeCount = result.getStrikeCount();
 
-        ArrayList<String> gameResult = new ArrayList<>();
-        if (ballCount != 0) {
-            gameResult.add(String.format(BALL, ballCount));
-        } else if (strikeCount != 0) {
-            gameResult.add(String.format(STRIKE, strikeCount));
-        } else if (ballCount == 0 && strikeCount == 0) {
-            gameResult.add(String.format(NOTHING));
-        }
-        System.out.println(String.join(" ",gameResult));
+        ArrayList<String> results = new ArrayList<>();
+        if (ballCount != 0)
+            results.add(String.format(BALL, ballCount));
+        if (strikeCount != 0)
+            results.add(String.format(STRIKE, strikeCount));
+        if (ballCount == 0 && strikeCount == 0)
+            results.add(String.format(NOTHING));
+
+        System.out.println(String.join(" ",results));
     }
 
 }
