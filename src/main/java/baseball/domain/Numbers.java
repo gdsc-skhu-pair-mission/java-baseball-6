@@ -29,11 +29,42 @@ public class Numbers {
         return transformNumbers;
     }
 
+    private boolean iscontainNumber(int number, int position) {
+        return numbers.contains(number) && position != numbers.indexOf(number);
+    }
+
+    private boolean isSamePosition(int number, int position) {
+        return position == numbers.indexOf(number);
+
+    }
+
+    private int countBall(Numbers inputNumbers) {
+        int ball = 0;
+        for(int i = 0; i < numbers.size(); i++) {
+            if(inputNumbers.iscontainNumber(numbers.get(i),i)) {
+                ball++;
+            }
+        }
+        return ball;
+    }
+
+    private int countStrike(Numbers inputNumbers) {
+        int strike = 0;
+        for(int i = 0; i < numbers.size(); i++) {
+            if (inputNumbers.isSamePosition(numbers.get(i), i)) {
+                strike++;
+            }
+        }
+         return strike;
+    }
+
+    public Result compareToNumbers(Numbers inputNumbers) {
+        return new Result(countBall(inputNumbers), countStrike(inputNumbers));
+    }
     @Override
     public String toString() {
         return "Numbers{" +
                 "numbers=" + numbers +
                 '}';
     }
-
 }
