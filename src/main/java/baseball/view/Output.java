@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import static baseball.domain.Massage.*;
 
 public class Output{
-    public static void startMassage() {
+    public static void startMessage() {
         System.out.println(START);
     }
 
-    public static void inputMassage() {
+    public static void inputMessage() {
         System.out.println(INPUT);
     }
 
@@ -20,7 +20,7 @@ public class Output{
         System.out.println(RESTART_OR_END);
     }
 
-    public static void resultMassage(Result result) {
+    public static void resultMessage(Result result) {
         int ballCount = result.getBallCount();
         int strikeCount = result.getStrikeCount();
 
