@@ -6,10 +6,10 @@ import baseball.view.*;
 
 import java.util.Objects;
 
-import static baseball.domain.Massage.RESTART;
+import static baseball.view.Message.RESTART;
 
 public class Game {
-    private static Numbers computerNumbers;
+    private Numbers computerNumbers;
 
     public void gameStart() {
         do {

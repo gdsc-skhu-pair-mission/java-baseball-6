@@ -1,12 +1,16 @@
 package baseball.validator;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
-import static baseball.domain.Massage.*;
+import static baseball.view.Message.*;
 
-public class validator {
+public class Validator {
+    private final static int INPUT_LENGTH = 3;
+    private final static int MIN = 1;
+    private final static int MAX = 9;
+    public final static String LENGTH_ERROR_MESSAGE = "3자리 수를 입력해야 합니다.";
+    public final static String RANGE_ERROR_MESSAGE = "1과 9 사이의 숫자를 입력해야 합니다.";
+    public final static String DUPLICATE_ERROR_MESSAGE = "중복되지 않은 숫자를 입력해야 합니다.";
 
     public static void validateLength(String input) {
         if (input.length() != INPUT_LENGTH) {

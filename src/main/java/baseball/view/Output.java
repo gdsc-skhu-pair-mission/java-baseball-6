@@ -4,7 +4,7 @@ import baseball.domain.Result;
 
 import java.util.ArrayList;
 
-import static baseball.domain.Massage.*;
+import static baseball.view.Message.*;
 
 public class Output{
     public static void startMessage() {
