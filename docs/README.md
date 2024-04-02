@@ -29,7 +29,7 @@
 - 가독성 향상하기 (`indent 줄이기` -> `early return`, `메서드 분리` 등)
 - `Controller`의 역할 다시 생각해보기 
 - 의미 있는 이름의 상수로 대체될 수 있는 수 또는 문자열 확인하기
-- EOL("End Of Line")학습하기
+- EOL 학습하기
 - 
 - generateRandomNumber 메서드 -> 각각의 메서드로 나누기
 - validation 부분 -> 각각의 메서드로 나누기
