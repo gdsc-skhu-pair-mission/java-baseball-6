@@ -2,7 +2,7 @@ package baseball.controller;
 
 import baseball.dto.Result;
 import baseball.model.Computer;
-import baseball.model.Number;
+import baseball.model.Numbers;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
@@ -28,9 +28,9 @@ public class BaseballGameController {
         inputView.printGameStart();
 
         while (true) {
-            Number number = inputView.getInputNumber();
+            Numbers numbers = inputView.getInputNumber();
 
-            Result result = compare(number.getNumber(), computer.getNumber());
+            Result result = compare(numbers.getNumbers(), computer.getNumber());
 
             outputView.printResultMessage(result.strike(), result.ball());
 
