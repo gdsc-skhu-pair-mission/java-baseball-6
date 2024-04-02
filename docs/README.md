@@ -27,6 +27,12 @@
 # 1차 리뷰 후 개선 방향
 - `View`의 수정에 `Model`이 영향을 받지 않도록 분리하기, 반대로도 마찬가지
 - 가독성 향상하기 (`indent 줄이기` -> `early return`, `메서드 분리` 등)
-- `Controller`의 역할 다시 생각해보기
+- `Controller`의 역할 다시 생각해보기 
 - 의미 있는 이름의 상수로 대체될 수 있는 수 또는 문자열 확인하기
-- EOL 학습하기
+- EOL("End Of Line")학습하기
+- 
+- generateRandomNumber 메서드 -> 각각의 메서드로 나누기
+- validation 부분 -> 각각의 메서드로 나누기
+- 자연수 확인하는 로직 정규식 써보자.. (시도했다가 실패했던 그거)
+- printResultMessage에서 if문안에 if문을 넣은 이유 고민해보기
+- view에서 Console.readLine()이 처리되는 게 맞는지 고민해보기

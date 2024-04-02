@@ -16,6 +16,7 @@ public class BaseballGameController {
     private final InputView inputView;
     private final OutputView outputView;
     private final Computer computer;
+    private static final int TOTAL_NUMBERS = 6;
 
     public BaseballGameController() {
         this.inputView = new InputView();
@@ -52,7 +53,7 @@ public class BaseballGameController {
     }
 
     private Integer countStrike(List<Integer> userNumber, List<Integer> computerNumber) {
-        int strike = 0;
+        Integer strike = 0;
 
         for (int i = 0; i < 3; i++) {
             if (Objects.equals(userNumber.get(i), computerNumber.get(i))) {
@@ -68,6 +69,6 @@ public class BaseballGameController {
         set.addAll(userNumber);
         set.addAll(computerNumber);
 
-        return 6 - set.size();
+        return TOTAL_NUMBERS - set.size();
     }
 }
