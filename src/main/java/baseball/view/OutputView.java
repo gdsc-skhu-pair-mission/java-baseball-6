@@ -1,27 +1,40 @@
 package baseball.view;
 
+import baseball.dto.Result;
+
+import static baseball.constant.ViewMessage.BALL;
+import static baseball.constant.ViewMessage.GAME_END;
+import static baseball.constant.ViewMessage.NOTHING;
+import static baseball.constant.ViewMessage.STRIKE;
+import static baseball.constant.ViewMessage.STRIKE_AND_BALL;
+
 public class OutputView {
 
-    public void printResultMessage(int strike, int ball) {
-        StringBuilder sb = new StringBuilder();
+    public void printResultMessage(Result result) {
+        int strike = result.strike();
+        int ball = result.ball();
+
+        System.out.println(getResultMessage(strike, ball));
+    }
+
+    public String getResultMessage(int strike, int ball) {
+        if (strike == 3) {
+            return GAME_END;
+        }
+
+        if (strike > 0 && ball == 0) {
+            return String.format(STRIKE, strike);
+        }
+
+        if (strike == 0 && ball > 0) {
+            return String.format(BALL, ball);
+        }
 
         if (strike > 0 && ball > 0) {
-            sb.append(ball).append("볼 ").append(strike).append("스트라이크");
-        }
-        if (strike > 0 && ball == 0) {
-            sb.append(strike).append("스트라이크");
-            if (strike == 3) {
-                sb.append("\n3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-            }
-        }
-        if (strike == 0 && ball > 0) {
-            sb.append(ball).append("볼");
-        }
-        if (strike == 0 && ball == 0) {
-            sb.append("낫싱");
+            return String.format(STRIKE_AND_BALL, ball, strike);
         }
 
-        System.out.println(sb);
+        return NOTHING;
     }
 
 }

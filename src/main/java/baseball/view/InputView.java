@@ -1,24 +1,28 @@
 package baseball.view;
 
-import baseball.model.Numbers;
 import camp.nextstep.edu.missionutils.Console;
+
+import static baseball.constant.GameRule.RESTART;
+import static baseball.constant.ViewMessage.GAME_START;
+import static baseball.constant.ViewMessage.INPUT_NUMBER;
+import static baseball.constant.ViewMessage.INPUT_RESTART;
 
 public class InputView {
 
     public void printGameStart() {
-        System.out.println("숫자 야구 게임을 시작합니다.");
+        System.out.println(GAME_START);
     }
 
-    public Numbers getInputNumber() {
-        System.out.print("숫자를 입력해주세요 : ");
-        String input = Console.readLine();
+    public String getInputNumber() {
+        System.out.print(INPUT_NUMBER);
 
-        return new Numbers(input);
+        return Console.readLine();
     }
 
     public boolean isRestart() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        System.out.println(INPUT_RESTART);
+
         String input = Console.readLine();
-        return input.equals("1");
+        return input.equals(RESTART);
     }
 }

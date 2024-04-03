@@ -17,17 +17,26 @@ public class BaseballGameController {
         inputView.printGameStart();
 
         while (true) {
-            Numbers numbers = inputView.getInputNumber();
+            game(computer);
+
+            if (!inputView.isRestart()) {
+                break;
+            }
+
+            computer.generateUniqueRandomNumbers();
+        }
+    }
+
+    private void game(Computer computer) {
+        while (true) {
+            String input = inputView.getInputNumber();
+            Numbers numbers = new Numbers(input);
 
             Result result = computer.calculateScore(numbers.getNumbers());
 
-            outputView.printResultMessage(result.strike(), result.ball());
+            outputView.printResultMessage(result);
 
-            if (result.isGameOver()) {
-                if (inputView.isRestart()) {
-                    computer.generateUniqueRandomNumbers();
-                    continue;
-                }
+            if (result.isGameEnd()) {
                 break;
             }
         }
