@@ -1,15 +1,16 @@
-package baseball.view;
+충돌을 해결하고 코드를 통합하겠습니다.
+
+        ```java
+        package baseball.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class GameView implements View {
-
-
+public class GameView {
     public void gameStartMessage() {
         System.out.println("숫자 야구 게임을 시작합니다.");
     }
 
-    public String inputNumbers() {
+    public String InputNumbers() {
         System.out.print("숫자를 입력해주세요 : ");
         return Console.readLine();
     }
@@ -26,8 +27,10 @@ public class GameView implements View {
     public void nonThreeStrikeMessage(int strikeCount, int ballCount) {
         System.out.println(ballCount + "볼 " + strikeCount + "스트라이크");
     }
+
     public int gameRestartOrEndMessage() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         return Integer.parseInt(Console.readLine());
     }
 }
+```

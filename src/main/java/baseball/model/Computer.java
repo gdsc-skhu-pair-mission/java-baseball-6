@@ -2,8 +2,15 @@ package baseball.model;
 
 import java.util.List;
 
-public interface Computer {
-    void generateRandomComputerNumbers();
+public class Computer {
 
-    List<Integer> getRandomNumbers();
+    private List<Integer> computerNumbers;
+
+    public List<Integer> getComputerNumbers() {
+        return computerNumbers;
+    }
+
+    public void setComputerNumbers(List<Integer> computerNumbers) {
+        this.computerNumbers = computerNumbers;
+    }
 }
