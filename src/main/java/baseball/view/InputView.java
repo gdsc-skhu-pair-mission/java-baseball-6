@@ -1,28 +1,26 @@
 package baseball.view;
 
+import baseball.constant.GameRule;
+import baseball.constant.ViewMessage;
 import camp.nextstep.edu.missionutils.Console;
-
-import static baseball.constant.GameRule.RESTART;
-import static baseball.constant.ViewMessage.GAME_START;
-import static baseball.constant.ViewMessage.INPUT_NUMBER;
-import static baseball.constant.ViewMessage.INPUT_RESTART;
 
 public class InputView {
 
-    public void printGameStart() {
-        System.out.println(GAME_START);
-    }
-
-    public String getInputNumber() {
-        System.out.print(INPUT_NUMBER);
+    public static String getInputNumber() {
+        System.out.print(ViewMessage.INPUT_NUMBER);
 
         return Console.readLine();
     }
 
-    public boolean isRestart() {
-        System.out.println(INPUT_RESTART);
+    public static boolean isRestart() {
+        System.out.println(ViewMessage.INPUT_RESTART);
 
         String input = Console.readLine();
-        return input.equals(RESTART);
+        return input.equals(GameRule.RESTART);
     }
+
+    private InputView() {
+
+    }
+
 }

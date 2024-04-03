@@ -12,4 +12,8 @@ public class ViewMessage {
     public static final String BALL = "%d볼";
     public static final String STRIKE_AND_BALL = "%d볼 %d스트라이크";
 
+    private ViewMessage() {
+
+    }
+
 }
