@@ -1,9 +1,7 @@
 package baseball.model;
 
-import baseball.controller.NumberBaseballGameController;
 import baseball.exception.ErrorMessage;
 import baseball.exception.WrongInputException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
