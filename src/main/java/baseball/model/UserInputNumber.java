@@ -20,6 +20,7 @@ public class UserInputNumber {
     }
 
     public void setUserInputNumber(String input) {
+        checkAllException(input);
         this.numbers = stringToArrayList(input);
     }
 
