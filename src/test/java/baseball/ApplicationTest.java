@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.controller.Validator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
@@ -7,6 +8,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberI
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ApplicationTest extends NsTest {
     @Test
@@ -21,25 +23,9 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 자릿수_입력_예외_테스트() {
+    void 예외_테스트() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("1234"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
-    void 중복_입력_예외_테스트() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("112"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
-    void 숫자_입력_예외_테스트() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("1a0"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }

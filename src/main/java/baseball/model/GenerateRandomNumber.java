@@ -1,13 +1,18 @@
-package baseball.domain;
+package baseball.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static baseball.domain.Massage.*;
-
 public class GenerateRandomNumber {
+
+    public final static Integer INPUT_LENGTH = 3;
+
+    public final static Integer MIN = 1;
+
+    public final static Integer MAX = 9;
+
     public List<Integer> generate() {
         List<Integer> computer = new ArrayList<>();
         while (computer.size() < INPUT_LENGTH) {

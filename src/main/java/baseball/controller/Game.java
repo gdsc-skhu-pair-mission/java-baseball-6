@@ -1,17 +1,19 @@
 package baseball.controller;
 
-import baseball.domain.Numbers;
-import baseball.domain.Result;
+import baseball.model.Numbers;
+import baseball.model.Result;
 import baseball.view.*;
 
 import java.util.Objects;
 
-import static baseball.domain.Massage.RESTART;
+import static baseball.view.Output.RESTART;
+import static baseball.view.Output.startMessage;
 
 public class Game {
-    private static Numbers computerNumbers;
+    private Numbers computerNumbers;
 
     public void gameStart() {
+        startMessage();
         do {
             initComputerNumbers();
             game();
@@ -22,20 +24,29 @@ public class Game {
         computerNumbers = new Numbers();
     }
 
-
     private void game() {
-        Result result;
+        Result result = null;
         do {
-            Numbers playerNumbers = Input.readNumbers();
-            result = playerNumbers.compareToNumbers(computerNumbers);
-            Output.resultMessage(result);
-        } while (!result.isSuccess());
-        Output.successMassage();
+            try {
+                Numbers playerNumbers = Input.readNumbers();
+                result = playerNumbers.compareToNumbers(computerNumbers);
+                Output.resultMessage(result);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (result == null || !result.isSuccess());
+        Output.successMessage();
     }
+
 
     private boolean restart() {
-        return Objects.equals(Input.readRestartOrEnd(), RESTART);
+        try {
+            String input = Input.readRestartOrEnd();
+            Validator.validateRestart(input);
+            return Objects.equals(input, RESTART);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
-
-
 }

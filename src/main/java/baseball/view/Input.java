@@ -1,11 +1,13 @@
 package baseball.view;
 
-import baseball.domain.Numbers;
+import baseball.model.Numbers;
 import camp.nextstep.edu.missionutils.Console;
 
+import static baseball.controller.Validator.validateRestart;
+
 public class Input {
+
     public static Numbers readNumbers() {
-        Output.startMessage();
         Output.inputMessage();
 
         String input = Console.readLine();
@@ -13,9 +15,10 @@ public class Input {
     }
 
     public static String readRestartOrEnd() {
-        Output.resultOrEndMessage();
+        Output.RestartOrEndMessage();
 
         String input = Console.readLine();
+        validateRestart(input);
         return input;
     }
 }

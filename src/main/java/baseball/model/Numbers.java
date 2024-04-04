@@ -1,9 +1,9 @@
-package baseball.domain;
+package baseball.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static baseball.validator.validator.*;
+import static baseball.controller.Validator.*;
 
 
 public class Numbers {
@@ -16,7 +16,8 @@ public class Numbers {
 
     public Numbers(String input) {
         validateLength(input);
-        validateRange(input);
+        validateRangeNumber(input);
+        validateRangeString(input);
         validateDuplicate(input);
 
         this.numbers = transformInputNumbers(input);
@@ -30,13 +31,13 @@ public class Numbers {
         return transformNumbers;
     }
 
-<<<<<<< HEAD
     private boolean isContainNumber(int number, int position) {
-        return position != numbers.indexOf(number) && numbers.contains(number);
-=======
-    private boolean iscontainNumber(int number, int position) {
-        return position != numbers.indexOf(number) && numbers.contains(number) ;
->>>>>>> 58c16cfaf53fe709d8d69771a43d71aa76b1fe73
+        for (int i = 0; i < numbers.size(); i++) {
+            if (i != position && numbers.get(i) == number) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean isSamePosition(int number, int position) {
@@ -45,8 +46,8 @@ public class Numbers {
 
     private int countBall(Numbers inputNumbers) {
         int ball = 0;
-        for(int i = 0; i < numbers.size(); i++) {
-            if(inputNumbers.isContainNumber(numbers.get(i),i)) {
+        for (int i = 0; i < numbers.size(); i++) {
+            if (inputNumbers.isContainNumber(numbers.get(i), i)) {
                 ball++;
             }
         }
@@ -55,12 +56,12 @@ public class Numbers {
 
     private int countStrike(Numbers inputNumbers) {
         int strike = 0;
-        for(int i = 0; i < numbers.size(); i++) {
+        for (int i = 0; i < numbers.size(); i++) {
             if (inputNumbers.isSamePosition(numbers.get(i), i)) {
                 strike++;
             }
         }
-         return strike;
+        return strike;
     }
 
     public Result compareToNumbers(Numbers inputNumbers) {
