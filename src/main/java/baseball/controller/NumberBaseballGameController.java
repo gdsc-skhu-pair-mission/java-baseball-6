@@ -1,44 +1,57 @@
 package baseball.controller;
 
+import baseball.exception.ErrorMessage;
 import baseball.exception.WrongInputException;
 import baseball.model.Computer;
 import baseball.model.User;
-import baseball.exception.ErrorMessage;
 import baseball.view.GameView;
 import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class NumberBaseballGameController {
-    private final GameView gameview = new GameView();
-    private final User user = new User();
-    private final Computer computer = new Computer();
+    // private final GameView gameview = new GameView();
+    private final GameView gameview;
+
+    // private final User user = new User();
+    private final User user;
+    // private final Computer computer = new Computer();
+    private final Computer computer;
+
+    public NumberBaseballGameController(GameView gameview, User user, Computer computer) {
+        this.gameview = gameview;
+        this.user = user;
+        this.computer = computer;
+
+    }
+    private final int BALL_MAX_SIZE = 3;
 
     public void randomNumber() {
         List<Integer> computerNumbers = new ArrayList<>();
-        while (computerNumbers.size() < 3) {
-            int randomNumber = Randoms.pickNumberInRange(1, 9);
-            if (!computerNumbers.contains(randomNumber)) {
-                computerNumbers.add(randomNumber);
-            }
+        while (computerNumbers.size() < BALL_MAX_SIZE) {
+            int computerNumber = genereateRandomNumber();
+            containCheck(computerNumbers, computerNumber);
         }
         computer.setComputerNumbers(computerNumbers);
+    }
+
+    private static void containCheck(List<Integer> computerNumbers, int computerNumber) {
+        if (!computerNumbers.contains(computerNumber)) {
+            computerNumbers.add(computerNumber);
+        }
+    }
+
+    public int genereateRandomNumber() {
+        return Randoms.pickNumberInRange(1, 9);
     }
 
     public void inputUserNumber() {
         String input = gameview.InputNumbers();
 
         try {
-            // 입력값이 3자리 숫자가 아닌 경우 예외 발생
-            if (input.length() != 3 || !input.matches("\\d{3}")) {
-                throw new WrongInputException(ErrorMessage.INVALID_LENGTH);
-            }
-
-            // 입력값이 숫자가 아닌 경우 예외 발생
-            if (!input.matches("[0-9]+")) {
-                throw new WrongInputException(ErrorMessage.NOT_NUMERIC);
-            }
+            isException(input);
 
             // 입력값이 중복된 숫자를 포함한 경우 예외 발생
             if (!isDistinct(input)) {
@@ -46,7 +59,7 @@ public class NumberBaseballGameController {
             }
 
             List<Integer> userNumbers = new ArrayList<>();
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < BALL_MAX_SIZE; i++) {
                 userNumbers.add(Character.getNumericValue(input.charAt(i)));
             }
             user.setNumbers(userNumbers);
@@ -54,6 +67,18 @@ public class NumberBaseballGameController {
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
             System.exit(1);
+        }
+    }
+
+    private static void isException(String input) {
+        // 입력값이 3자리 숫자가 아닌 경우 예외 발생
+        if (input.length() != 3 || !input.matches("\\d{3}")) {
+            throw new WrongInputException(ErrorMessage.INVALID_LENGTH);
+        }
+
+        // 입력값이 숫자가 아닌 경우 예외 발생
+        if (!input.matches("[0-9]+")) {
+            throw new WrongInputException(ErrorMessage.NOT_NUMERIC);
         }
     }
 
@@ -74,12 +99,13 @@ public class NumberBaseballGameController {
         for (int i = 0; i < 3; i++) {
             if (computerNumbers.contains(userNumbers.get(i))) {
                 ballCount++;
-            } if (Objects.equals(computerNumbers.get(i), userNumbers.get(i))) {
+            }
+            if (Objects.equals(computerNumbers.get(i), userNumbers.get(i))) {
                 strikeCount++;
             }
         }
         ballCount = ballCount - strikeCount;
-        validateResult(strikeCount,ballCount);
+        validateResult(strikeCount, ballCount);
     }
 
     public void validateResult(int strikeCount, int ballCount) {
