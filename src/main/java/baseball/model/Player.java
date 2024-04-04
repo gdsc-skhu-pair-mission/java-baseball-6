@@ -1,29 +1,25 @@
 package baseball.model;
 
-import static baseball.view.OutputView.printInputMessage;
+import static baseball.util.Validator.validateInputNumber;
 
-import baseball.util.Validator;
-import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
+import baseball.util.InputReader;
+import baseball.util.NumberConverter;
 import java.util.List;
 
 public class Player {
 
-    public List<Integer> inputPlayerNumber() {
-        printInputMessage();
-        String input = Console.readLine();
+    private final InputReader inputReader;
+    private final NumberConverter numberConverter;
 
-        Validator.validateInputNumber(input);
-
-        List<Integer> numbers = convertStringToIntegers(input);
-
-        return numbers;
+    public Player(InputReader inputReader, NumberConverter numberConverter) {
+        this.inputReader = inputReader;
+        this.numberConverter = numberConverter;
     }
 
-    private List<Integer> convertStringToIntegers(final String input) {
-        return new ArrayList<>(input.chars()
-                .map(Character::getNumericValue)
-                .boxed()
-                .toList());
+    public List<Integer> inputPlayerNumber() {
+        String input = inputReader.readInput();
+        validateInputNumber(input);
+
+        return numberConverter.convertStringToIntegers(input);
     }
 }

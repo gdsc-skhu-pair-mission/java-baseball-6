@@ -4,31 +4,23 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import static baseball.util.ExceptionHandler.Exception;
+import static baseball.util.ExceptionHandler.CustomException;
 import static baseball.util.ErrorMessage.*;
 
 public class Validator {
 
     private static final int INPUT_NUMBER_LENGTH = 3;
 
-    public static void validateInputNumber(String input) {
-        // null 값 검증
+    private static void checkedNullInputNumber(String input) {
         if (input == null) {
-            Exception(INPUT_NUMBER_NOT_NULL);
+            CustomException(INPUT_NUMBER_NOT_NULL);
         }
-        // 3자리 검증
-        if (input.length() != INPUT_NUMBER_LENGTH) {
-            Exception(INPUT_NUMBER_NOT_3_DIGIT);
-        }
-        // 중복된 수 검증
-        if (hasDuplicateNumber(input)) {
-            Exception(INPUT_NUMBER_DUPLICATE);
-        }
-        // 요구조건 검증
-        if (!isRequirementNumber(input)) {
-            Exception(INPUT_NUMBER_NOT_RANGE);
-        }
+    }
 
+    private static void checkedLengthInputNumber(String input) {
+        if (input.length() != INPUT_NUMBER_LENGTH) {
+            CustomException(INPUT_NUMBER_NOT_3_DIGIT);
+        }
     }
 
     private static boolean hasDuplicateNumber(String input) {
@@ -41,7 +33,26 @@ public class Validator {
         return false;
     }
 
+    private static void checkedDuplicateInputNumber(String input) {
+        if (hasDuplicateNumber(input)) {
+            CustomException(INPUT_NUMBER_DUPLICATE);
+        }
+    }
     private static boolean isRequirementNumber(String input) {
         return Pattern.matches("^[1-9]{3}$", input);
     }
+
+    private static void checkedRequirementInputNumber(String input) {
+        if (!isRequirementNumber(input)) {
+            CustomException(INPUT_NUMBER_NOT_RANGE);
+        }
+    }
+
+    public static void validateInputNumber(String input) {
+        checkedNullInputNumber(input);
+        checkedLengthInputNumber(input);
+        checkedDuplicateInputNumber(input);
+        checkedRequirementInputNumber(input);
+    }
+
 }
