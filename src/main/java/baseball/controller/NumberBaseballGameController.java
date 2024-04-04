@@ -16,9 +16,9 @@ public class NumberBaseballGameController {
     private final GameView gameview;
 
     // private final User user = new User();
-    private final User user;
+    private User user;
     // private final Computer computer = new Computer();
-    private final Computer computer;
+    private Computer computer;
 
     public NumberBaseballGameController(GameView gameview, User user, Computer computer) {
         this.gameview = gameview;
@@ -34,7 +34,10 @@ public class NumberBaseballGameController {
             int computerNumber = genereateRandomNumber();
             containCheck(computerNumbers, computerNumber);
         }
-        computer.setComputerNumbers(computerNumbers);
+        this.computer = new Computer.Builder()
+                .computerNumbers(computerNumbers)
+                .build();
+        System.out.println(computerNumbers);
     }
 
     private static void containCheck(List<Integer> computerNumbers, int computerNumber) {
@@ -50,35 +53,42 @@ public class NumberBaseballGameController {
     public void inputUserNumber() {
         String input = gameview.InputNumbers();
 
+
         try {
             isException(input);
 
             // 입력값이 중복된 숫자를 포함한 경우 예외 발생
             if (!isDistinct(input)) {
-                throw new WrongInputException(ErrorMessage.DUPLICATE_DIGITS);
+                throw new WrongInputException(ErrorMessage.DUPLICATE_DIGITS.getMessage());
             }
 
             List<Integer> userNumbers = new ArrayList<>();
             for (int i = 0; i < BALL_MAX_SIZE; i++) {
                 userNumbers.add(Character.getNumericValue(input.charAt(i)));
             }
-            user.setNumbers(userNumbers);
+            User user = new User.Builder()
+                    .userNumbers(userNumbers)
+                    .build();
+            this.user = new User.Builder()
+                    .userNumbers(userNumbers)
+                    .build();
 
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
-            System.exit(1);
+            System.exit(0);
         }
+
     }
 
     private static void isException(String input) {
         // 입력값이 3자리 숫자가 아닌 경우 예외 발생
         if (input.length() != 3 || !input.matches("\\d{3}")) {
-            throw new WrongInputException(ErrorMessage.INVALID_LENGTH);
+            throw new WrongInputException(ErrorMessage.INVALID_LENGTH.getMessage());
         }
 
         // 입력값이 숫자가 아닌 경우 예외 발생
         if (!input.matches("[0-9]+")) {
-            throw new WrongInputException(ErrorMessage.NOT_NUMERIC);
+            throw new WrongInputException(ErrorMessage.NOT_NUMERIC.getMessage());
         }
     }
 
@@ -91,21 +101,23 @@ public class NumberBaseballGameController {
 
 
     public void compareNumber() {
-        List<Integer> userNumbers = user.getNumbers();
         List<Integer> computerNumbers = computer.getComputerNumbers();
+        List<Integer> userNumbers = user.getNumbers();
         int ballCount = 0;
         int strikeCount = 0;
+
 
         for (int i = 0; i < 3; i++) {
             if (computerNumbers.contains(userNumbers.get(i))) {
                 ballCount++;
             }
-            if (Objects.equals(computerNumbers.get(i), userNumbers.get(i))) {
+            if (computerNumbers.get(i) != null && computerNumbers.get(i).equals(userNumbers.get(i))) {
                 strikeCount++;
             }
         }
         ballCount = ballCount - strikeCount;
         validateResult(strikeCount, ballCount);
+
     }
 
     public void validateResult(int strikeCount, int ballCount) {
@@ -133,5 +145,6 @@ public class NumberBaseballGameController {
     public void gameRestartOrEnd() {
         int selectNumber = gameview.gameRestartOrEndMessage();
         if (selectNumber == 1) numberBaseballGame();
+        else System.exit(0);
     }
 }

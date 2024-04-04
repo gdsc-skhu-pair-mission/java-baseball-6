@@ -8,8 +8,11 @@ import baseball.view.GameView;
 public class Application {
     public static void main(String[] args) {
         GameView gameView = new GameView();
-        User user = new User();
-        Computer computer = new Computer();
+        Computer computer = new Computer.Builder()
+                .build();
+        User user = new User.Builder()
+                .build();
+
         NumberBaseballGameController numberBaseballGameController = new NumberBaseballGameController(gameView,user,computer);
 
         numberBaseballGameController.numberBaseballGame();
