@@ -7,14 +7,17 @@ public class OutputView {
     private static final String RESTART_PRINT = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
     private static final String STRIKE_PRINT = "스트라이크";
 
-    public void printNoneStrikeResult(String notStrikeHint) {
+    public String printNoneStrikeResult(String notStrikeHint) {
         System.out.println(notStrikeHint);
+        return notStrikeHint;
     }
 
-    public void printAllStrikeResult(int strikeCount) {
+    public String printAllStrikeResult(int strikeCount) {
         System.out.println(strikeCount + STRIKE_PRINT);
         System.out.println(ALL_STRIKE_PRINT);
         System.out.println(RESTART_PRINT);
+
+        return strikeCount + STRIKE_PRINT + "\n" + ALL_STRIKE_PRINT + "\n" + RESTART_PRINT;
     }
 
     public void printCreateController() {

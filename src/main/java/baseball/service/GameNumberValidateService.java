@@ -1,24 +1,21 @@
 package baseball.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import baseball.dto.BallAndStrikeCountDto;
 
 public class GameNumberValidateService {
 
     private static final int NUMBER_LENGTH = 3;
 
-    private int strikeCount;
     private int ballCount;
-    private List<Integer> ballAndStrikeCountList = new ArrayList<>();
+    private int strikeCount;
 
 
-    public List<Integer> calculateGameNumber(String computerNumber, String playerNumber) {
+    public BallAndStrikeCountDto calculateGameNumber(String computerNumber, String playerNumber) {
         resetCalculator();
         ballCount = calculateBallCount(computerNumber, playerNumber);
         strikeCount = calculateStrikeCount(computerNumber, playerNumber);
-        setBallAndStrikeCountList(ballCount, strikeCount);
 
-        return ballAndStrikeCountList;
+        return new BallAndStrikeCountDto(ballCount, strikeCount);
     }
 
     private int calculateBallCount(String computerNumber, String playerNumber) {
@@ -51,21 +48,7 @@ public class GameNumberValidateService {
         return computerNumber == playerNumber;
     }
 
-    public int getBallCount() {
-        return ballCount;
-    }
-
-    public int getStrikeCount() {
-        return strikeCount;
-    }
-
-    public void setBallAndStrikeCountList(int ballCount, int strikeCount) {
-        ballAndStrikeCountList.add(ballCount);
-        ballAndStrikeCountList.add(strikeCount);
-    }
-
     public void resetCalculator() {
-        ballAndStrikeCountList.clear();
         ballCount = 0;
         strikeCount = 0;
     }

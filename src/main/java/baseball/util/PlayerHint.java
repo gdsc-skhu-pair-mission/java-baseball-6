@@ -1,40 +1,40 @@
 package baseball.util;
 
-import java.util.List;
+import baseball.dto.BallAndStrikeCountDto;
+
 
 public class PlayerHint {
 
     private static final String BALL = "볼";
     private static final String STRIKE = "스트라이크";
     private static final String NOTTING = "낫싱";
-    private static final int BALL_INDEX = 0;
-    private static final int STRIKE_INDEX = 1;
 
-    private static String playerHint;
+    private String playerHint;
 
-    public void offerResultHint(List<Integer> ballAndStrikeCount) {
-        int ballCount = ballAndStrikeCount.get(BALL_INDEX);
-        int strikeCount = ballAndStrikeCount.get(STRIKE_INDEX);
+    public String offerResultHint(BallAndStrikeCountDto countDto) {
+        int ballCount = countDto.getBallCount();
+        int strikeCount = countDto.getStrikeCount();
 
         if (ballCount == 0 && strikeCount == 0) {
-            this.playerHint = NOTTING;
-            return;
+            return NOTTING;
         }
 
         if (ballCount == 0 && strikeCount != 0) {
-            this.playerHint = strikeCount + STRIKE;
-            return;
+            return strikeCount + STRIKE;
         }
 
         if (ballCount != 0 && strikeCount == 0) {
-            this.playerHint = ballCount + BALL;
-            return;
+            return ballCount + BALL;
         }
 
-        this.playerHint = ballCount + BALL + " " + strikeCount + STRIKE;
+        return ballCount + BALL + " " + strikeCount + STRIKE;
     }
 
-    public static String getPlayerHint() {
+    public void setPlayerHint(String hint) {
+        this.playerHint = hint;
+    }
+
+    public String getPlayerHint() {
         return playerHint;
     }
 }

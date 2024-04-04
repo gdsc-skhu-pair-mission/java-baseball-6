@@ -7,10 +7,6 @@ public class Computer {
 
     private String computerGameNumber;
 
-    public Computer() {
-        refreshGameNumber();
-    }
-
     public Computer(ComputerRandomNumber computerRandomNumber) {
         this.computerGameNumber = computerRandomNumber.getComputerNumber();
     }

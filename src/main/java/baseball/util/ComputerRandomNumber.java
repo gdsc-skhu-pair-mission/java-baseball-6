@@ -17,10 +17,6 @@ public class ComputerRandomNumber {
         return computerNumber;
     }
 
-    public ComputerRandomNumber(List<Integer> computerNumberList) {
-        this.computerNumber = computerNumberListToString(computerNumberList);
-    }
-
     public ComputerRandomNumber() {
         this.computerNumber = computerNumberListToString(getRandomNumberList());
     }
