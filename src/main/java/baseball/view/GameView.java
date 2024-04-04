@@ -2,8 +2,16 @@ package baseball.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class GameView implements View {
+public class GameView {
 
+    private static GameView instance;
+
+    public static GameView getInstance() {
+        if (instance == null) {
+            instance = new GameView();
+        }
+        return instance;
+    }
 
     public void gameStartMessage() {
         System.out.println("숫자 야구 게임을 시작합니다.");
@@ -26,6 +34,7 @@ public class GameView implements View {
     public void nonThreeStrikeMessage(int strikeCount, int ballCount) {
         System.out.println(ballCount + "볼 " + strikeCount + "스트라이크");
     }
+
     public int gameRestartOrEndMessage() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         return Integer.parseInt(Console.readLine());

@@ -1,22 +1,20 @@
 package baseball.controller;
 
 import baseball.model.Computer;
-import baseball.model.ComputerRandomNumber;
-import baseball.model.Input;
 import baseball.model.UserInputNumber;
 import baseball.view.GameView;
-import baseball.view.View;
 import java.util.List;
 
 
 public class NumberBaseballGameController {
-    private final View gameview;
+    private final GameView gameview;
     private final Computer computer;
-    private Input userInputNumber;
+    private final UserInputNumber userInputNumber;
 
     public NumberBaseballGameController() {
-        this.gameview = new GameView();
-        this.computer = new ComputerRandomNumber();
+        this.gameview = GameView.getInstance();
+        this.computer = Computer.getInstance();
+        this.userInputNumber = UserInputNumber.getInstance();
     }
 
     public void numberBaseballGame() {
@@ -28,7 +26,7 @@ public class NumberBaseballGameController {
 
     private void inputUserNumber() {
         String input = gameview.inputNumbers();
-        this.userInputNumber = new UserInputNumber(input);
+        userInputNumber.setUserInputNumber(input);
     }
 
     private void compareNumber() {
@@ -48,7 +46,7 @@ public class NumberBaseballGameController {
         }
 
         ballCount = ballCount - strikeCount;
-        validateResult(strikeCount,ballCount);
+        validateResult(strikeCount, ballCount);
     }
 
     public void validateResult(int strikeCount, int ballCount) {
@@ -68,6 +66,8 @@ public class NumberBaseballGameController {
 
     private void gameRestartOrEnd() {
         int selectNumber = gameview.gameRestartOrEndMessage();
-        if (selectNumber == 1) numberBaseballGame();
+        if (selectNumber == 1) {
+            numberBaseballGame();
+        }
     }
 }
