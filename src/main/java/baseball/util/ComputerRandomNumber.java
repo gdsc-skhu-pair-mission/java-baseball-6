@@ -3,7 +3,9 @@ package baseball.util;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ComputerRandomNumber {
@@ -33,13 +35,16 @@ public class ComputerRandomNumber {
     }
 
     private static List<Integer> getRandomNumberList() {
-        List<Integer> computerRandomNumber = new ArrayList<>();
-        while (computerRandomNumber.size() < MAX_NUMBER_LENGTH) {
+        // O(1) 시간 복잡도 재구현 => HashSet 사용, 중복 불허
+        Set<Integer> numbersSet = new HashSet<>();
+        while (numbersSet.size() < MAX_NUMBER_LENGTH) {
             int randomNumber = Randoms.pickNumberInRange(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
-            if (!computerRandomNumber.contains(randomNumber)) {
-                computerRandomNumber.add(randomNumber);
-            }
+            // contains => O(n), 제거
+            numbersSet.add(randomNumber);
         }
+
+        // 순서가 있기에 List로 변환
+        List<Integer> computerRandomNumber = new ArrayList<>(numbersSet);
 
         return computerRandomNumber;
     }

@@ -35,13 +35,13 @@ public class GamePlayController {
         player = new Player();
 
         while (player.getPlayerStatus() != PlayerStatus.END) {
-            inputPLayerNumber();
+            inputPlayerNumber();
             hintResult(ballAndStrikeCount(computer.getComputerGameNumber(), player.getPlayerNumber()));
             allStrikeGameExit();
         }
     }
 
-    private static void inputPLayerNumber() {
+    private static void inputPlayerNumber() {
         player = new Player(InputView.setPlayerNumber());
     }
 
