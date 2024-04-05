@@ -1,11 +1,11 @@
 package baseball.dto;
 
-public class BallAndStrikeCountDto {
+public class GameResultDto {
 
     private final int ballCount;
     private final int strikeCount;
 
-    public BallAndStrikeCountDto(int ballCount, int strikeCount) {
+    public GameResultDto(int ballCount, int strikeCount) {
         this.ballCount = ballCount;
         this.strikeCount = strikeCount;
     }
@@ -18,7 +18,7 @@ public class BallAndStrikeCountDto {
         return ballCount;
     }
 
-    public BallAndStrikeCountDto offerBallAndStrikeCount(int ballCount, int strikeCount) {
-        return new BallAndStrikeCountDto(ballCount, strikeCount);
+    public GameResultDto offerBallAndStrikeCount(int ballCount, int strikeCount) {
+        return new GameResultDto(ballCount, strikeCount);
     }
 }

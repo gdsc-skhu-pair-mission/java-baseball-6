@@ -5,15 +5,13 @@ import baseball.domain.Player;
 import baseball.domain.PlayerStatus;
 import baseball.view.InputView;
 
-import java.io.IOException;
-
 public class GameRetryService {
 
     private static final int RESTART_GAME = 1;
     private static final int END_GAME = 2;
 
     public void processNextGameStatus(Computer computer, Player player) {
-        player.setRetryNumber(InputView.settingRetryNumber());
+        player.setRetryNumber(InputView.inputRetryNumber());
         setNextGameStatus(computer, player);
     }
 
@@ -24,7 +22,7 @@ public class GameRetryService {
         }
 
         if (player.getRetryNumber() == END_GAME) {
-            player.setPlayerStatus(PlayerStatus.END);
+            player.setStatusEnd();
         }
     }
 }

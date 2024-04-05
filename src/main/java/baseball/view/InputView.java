@@ -13,7 +13,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static int settingRetryNumber() {
+    public static int inputRetryNumber() {
         String inputRetryNumber = Console.readLine();
         if (!inputRetryNumber.equals("1") && !inputRetryNumber.equals("2")) {
             throw new IllegalArgumentException(WRONG_INPUT_NUMBER_PRINT);

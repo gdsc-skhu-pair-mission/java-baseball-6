@@ -3,7 +3,7 @@ package baseball.controller;
 import baseball.domain.Computer;
 import baseball.domain.Player;
 import baseball.domain.PlayerStatus;
-import baseball.dto.BallAndStrikeCountDto;
+import baseball.dto.GameResultDto;
 import baseball.service.GameNumberValidateService;
 import baseball.service.GameRetryService;
 import baseball.util.ComputerRandomNumber;
@@ -16,10 +16,10 @@ public class GamePlayController {
     private static final int ALL_STRIKE = 3;
     private static final String STRIKE_PRINT = "스트라이크";
 
-    private static Computer computer;
-    private static Player player;
+    private Computer computer;
+    private Player player;
 
-    private BallAndStrikeCountDto resultDto;
+    private GameResultDto resultDto;
 
     private final GameNumberValidateService gameNumberValidateService = new GameNumberValidateService();
     private final GameRetryService gameRetryService = new GameRetryService();
@@ -35,32 +35,32 @@ public class GamePlayController {
         player = new Player();
 
         while (player.getPlayerStatus() != PlayerStatus.END) {
-            inputPlayerNumber();
+            this.inputPlayerNumber();
             resultDto = ballAndStrikeCount(computer.getComputerGameNumber(), player.getPlayerNumber());
-            offerRevisedHint(resultDto);
+            printHintResult(resultDto);
             allStrikeGameExit();
         }
     }
 
-    private static void inputPlayerNumber() {
+    private void inputPlayerNumber() {
         player = new Player(InputView.setPlayerNumber());
     }
 
-    public BallAndStrikeCountDto ballAndStrikeCount(String computerNumber, String playerNumber) {
+    public GameResultDto ballAndStrikeCount(String computerNumber, String playerNumber) {
 
         return gameNumberValidateService.calculateGameNumber(computerNumber, playerNumber);
     }
 
-    public String offerRevisedHint(BallAndStrikeCountDto resultDto) {
+    public void printHintResult(GameResultDto resultDto) {
 
-        String hint = playerHint.offerResultHint(resultDto.offerBallAndStrikeCount(resultDto.getBallCount(), resultDto.getStrikeCount()));
+        String hint = playerHint.calculateHint(resultDto.offerBallAndStrikeCount(resultDto.getBallCount(), resultDto.getStrikeCount()));
         playerHint.setPlayerHint(hint);
 
         if (resultDto.getStrikeCount() == ALL_STRIKE) {
-             return outputView.printAllStrikeResult(ALL_STRIKE);
+             outputView.printAllStrikeResult(ALL_STRIKE);
         }
 
-        return outputView.printNoneStrikeResult(playerHint.getPlayerHint());
+        outputView.printNoneStrikeResult(playerHint.getPlayerHint());
     }
 
     private void allStrikeGameExit() {

@@ -1,6 +1,6 @@
 package baseball.util;
 
-import baseball.dto.BallAndStrikeCountDto;
+import baseball.dto.GameResultDto;
 
 
 public class PlayerHint {
@@ -11,7 +11,7 @@ public class PlayerHint {
 
     private String playerHint;
 
-    public String offerResultHint(BallAndStrikeCountDto countDto) {
+    public String calculateHint(GameResultDto countDto) {
         int ballCount = countDto.getBallCount();
         int strikeCount = countDto.getStrikeCount();
 

@@ -1,21 +1,21 @@
 package baseball.service;
 
-import baseball.dto.BallAndStrikeCountDto;
+import baseball.dto.GameResultDto;
 
 public class GameNumberValidateService {
 
-    private static final int NUMBER_LENGTH = 3;
+    private final int NUMBER_LENGTH = 3;
 
     private int ballCount;
     private int strikeCount;
 
 
-    public BallAndStrikeCountDto calculateGameNumber(String computerNumber, String playerNumber) {
+    public GameResultDto calculateGameNumber(String computerNumber, String playerNumber) {
         resetCalculator();
         ballCount = calculateBallCount(computerNumber, playerNumber);
         strikeCount = calculateStrikeCount(computerNumber, playerNumber);
 
-        return new BallAndStrikeCountDto(ballCount, strikeCount);
+        return new GameResultDto(ballCount, strikeCount);
     }
 
     private int calculateBallCount(String computerNumber, String playerNumber) {
@@ -48,7 +48,7 @@ public class GameNumberValidateService {
         return computerNumber == playerNumber;
     }
 
-    public void resetCalculator() {
+    private void resetCalculator() {
         ballCount = 0;
         strikeCount = 0;
     }

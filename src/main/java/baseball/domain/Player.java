@@ -48,4 +48,7 @@ public class Player {
         return playerStatus;
     }
 
+    public void setStatusEnd() {
+        this.playerStatus = PlayerStatus.END;
+    }
 }
