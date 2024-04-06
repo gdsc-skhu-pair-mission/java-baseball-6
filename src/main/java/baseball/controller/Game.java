@@ -17,13 +17,13 @@ public class Game {
     public void gameStart() {
         startMessage();
         do {
-            initComputerNumbers();
+            generateComputerNumbers();
             game();
         } while (restart());
     }
 
-    private void initComputerNumbers() {
-        computerNumbers = new RandomNumbers();
+    private void generateComputerNumbers() {
+        computerNumbers = RandomNumbers.generateRandom();
     }
 
     private void game() {
@@ -39,7 +39,6 @@ public class Game {
         } while (result == null || !result.isSuccess());
         OutputView.successMessage();
     }
-
 
     private boolean restart() {
         try {

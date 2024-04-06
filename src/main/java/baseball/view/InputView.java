@@ -11,7 +11,7 @@ public class InputView {
         System.out.println(MessageConst.INPUT);
 
         String input = Console.readLine();
-        return new RandomNumbers(input);
+        return RandomNumbers.fromInputString(input);
     }
 
     public static String readRestartOrEnd() {

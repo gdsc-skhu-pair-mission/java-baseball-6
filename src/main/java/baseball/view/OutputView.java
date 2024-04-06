@@ -13,10 +13,6 @@ public class OutputView {
         System.out.println(MessageConst.START);
     }
 
-    public static void inputMessage() {
-        System.out.println(INPUT);
-    }
-
     public static void successMessage() {
         System.out.println(SUCCESS);
     }
@@ -39,7 +35,4 @@ public class OutputView {
         System.out.println(String.join(" ",gameResult));
     }
 
-    public static void RestartOrEndMessage() {
-        System.out.println(RESTART_OR_END);
-    }
 }
